@@ -1,0 +1,34 @@
+**************
+in AutoStartEvent ()
+**************
+
+if stringcontains(GetWindowName(getrealwindow(getcurrentwindow())), "sumtotal") then
+	LabelLMS()
+EndIf
+
+
+***********
+AT BOTTOM
+***********
+Function LabelLMS()
+Var
+   object dom,
+   object alldivs,
+   object coursedivs,
+   object allbuttons,
+   int x,
+   int y
+let dom=IEGetCurrentDocument()
+let alldivs=dom.getElementsbyTagName("div")
+for x=0 to alldivs.length
+   if alldivs(x).id == "cd-timeline"
+      let coursedivs = alldivs(x).getelementsbytagname("div")
+      for y=0 to coursedivs.length
+         if coursedivs(y).classname == "h4"
+            let allbuttons = coursedivs(y+2).getelementsbytagname("button")
+               allbuttons(0).setattribute("aria-label","Start - "+coursedivs(y).innertext)
+         Endif
+      endfor
+   EndIf
+EndFor
+EndFunction
