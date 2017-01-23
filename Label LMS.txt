@@ -1,7 +1,7 @@
 **************
 in AutoStartEvent ()
 **************
-
+test
 if stringcontains(GetWindowName(getrealwindow(getcurrentwindow())), "sumtotal") then
 	LabelLMS()
 EndIf
